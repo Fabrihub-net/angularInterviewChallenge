@@ -16,16 +16,16 @@ export class HeaderComponent implements OnInit {
       name: 'users',
       router: '/users'
     },
-    {
-      name: 'register',
-      router: '/register'
-    },
+    // {
+    //   name: 'register',
+    //   router: '/register'
+    // },
     {
       name: 'login',
       router: '/login'
     },
   ];
-  
+
   showMobileMenu = false;
 
   constructor() { }
