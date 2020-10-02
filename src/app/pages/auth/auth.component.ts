@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-auth',
@@ -10,8 +11,12 @@ import { Router } from '@angular/router';
 export class AuthComponent implements OnInit {
   authForm: FormGroup;
 
-  constructor(public router: Router) {
+  constructor(
+    private _userService: UserService,
+    public router: Router
+    ) {
     this.authForm = new FormGroup({
+      name: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
     })
@@ -22,10 +27,16 @@ export class AuthComponent implements OnInit {
 
   authenticate() {
     if (this.router.url === '/login') {
-      console.log('loggin');
+      this._userService.loginUser(this.authForm.value)
+      .subscribe((res) => {
+        this._userService.setUser(res);
+        this.router.navigate(['/users']);
+      });
     } else {
-      
-      console.log('reigster');
+      this._userService.registerUser(this.authForm.value)
+      .subscribe(() => {
+        this.router.navigateByUrl('/login');
+      });
     }
   }
 

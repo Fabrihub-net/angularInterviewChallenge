@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -7,28 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  navLinks = [
-    {
-      name: 'home',
-      router: '/'
-    },
-    {
-      name: 'users',
-      router: '/users'
-    },
-    // {
-    //   name: 'register',
-    //   router: '/register'
-    // },
-    {
-      name: 'login',
-      router: '/login'
-    },
-  ];
-
   showMobileMenu = false;
 
-  constructor() { }
+  constructor(public _userService: UserService) { }
 
   ngOnInit(): void {
   }
