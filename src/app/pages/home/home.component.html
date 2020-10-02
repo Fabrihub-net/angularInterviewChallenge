@@ -1,0 +1,12 @@
+<ng-container *ngIf="_userService.isLogged; else regiser">
+  <h1>Hi, {{_userService.user.name}}</h1>
+  
+  <a routerLink="/users" class="btn btn-primary">Check Users</a>
+</ng-container>
+
+<ng-template #regiser>
+  <h1>Welcome</h1>
+  <p>register to use the app</p>
+  
+  <a routerLink="/register" class="btn btn-primary">Register</a>
+</ng-template>
