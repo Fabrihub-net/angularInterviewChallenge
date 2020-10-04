@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FakeBackendInterceptor } from './shared/services/fake-backend-interceptor.service';
 import { JwtInterceptor } from './shared/services/jwt-interceptor.service';
 import { HomeComponent } from './pages/home/home.component';
+import { ChangePasswordComponent } from './pages/auth/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HomeComponent } from './pages/home/home.component';
     HeaderComponent,
     AuthComponent,
     UsersComponent,
-    HomeComponent
+    HomeComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
