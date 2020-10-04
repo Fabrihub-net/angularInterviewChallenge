@@ -20,10 +20,13 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(id) {
-    console.log(id);
     this.http$.delete(`http://localhost:4200/users/${id}`)
-    .subscribe((res) => {
-      this.users = res;
+    .subscribe(() => {
+      
+      this.http$.get('http://localhost:4200/users')
+      .subscribe((res) => {
+        this.users = res;
+      });
     });
   }
 
