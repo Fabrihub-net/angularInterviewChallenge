@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  currentUser = JSON.parse(localStorage.getItem('user'));
   users: any;
 
   constructor(private http$: HttpClient) { }
@@ -20,6 +21,10 @@ export class UsersComponent implements OnInit {
 
   deleteUser(id) {
     console.log(id);
+    this.http$.delete(`http://localhost:4200/users/${id}`)
+    .subscribe((res) => {
+      this.users = res;
+    });
   }
 
 }

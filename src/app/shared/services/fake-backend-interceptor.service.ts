@@ -4,6 +4,9 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
 // array in local storage for registered users
+fetch('../../../assets/users.json')
+.then(res => res.json())
+.then(res => localStorage.setItem('users', JSON.stringify(res)));
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
 @Injectable()

@@ -15,10 +15,8 @@
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>
             <td style="white-space: nowrap">
-                <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-                <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
-                    <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
-                    <span *ngIf="!user.isDeleting">Delete</span>
+                <button *ngIf="currentUser['id'] !== user.id" (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user">
+                    Delete
                 </button>
             </td>
         </tr>
