@@ -1,0 +1,33 @@
+<div class="container ">
+    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-4@s uk-margin" uk-grid *ngIf="currentUser">
+        <div class="uk-card-media-left uk-cover-container  ">
+            <img src="../../../assets/images/{{currentUser.imgSrc}}" alt="" uk-cover>
+            <!-- <canvas width="50" height="50"></canvas> -->
+        </div>
+        <div uk-grid class="uk-width-1-2 mx-3">
+            <div class="uk-card-body uk-width-1-1">
+                <h3 class="uk-card-title ">{{currentUser.username}}</h3>
+                <div class="user-info uk-width-1-1">
+                    <ul class="uk-list uk-list-striped uk-width-1-1">
+                        <li>Email: {{currentUser.email}}</li>
+                        <li>Address: {{currentUser.address}}, {{currentUser.city}}, {{currentUser.country}} </li>
+                        <li>Phone : {{currentUser.phone}}</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class=" uk-position-top-right uk-inline">
+            <button class="uk-button uk-button-primary uk-button-medium rounded ">Actions <span class="pl-3" uk-icon="icon:   cog"></span></button>
+            <div uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li ><a routerLink="/change-pass">Change Password</a></li>
+                    <li *ngIf="isAdmin" class="uk-nav-divider"></li>
+                    <li *ngIf="isAdmin"><a routerLink="/manage-users">Manage Users</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

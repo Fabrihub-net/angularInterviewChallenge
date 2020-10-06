@@ -1,0 +1,90 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin",
+      "firstName": "IHub ",
+      "lastName": "Admin",
+      "role": "admin",
+      "email": "fee.iclub19@gmail.com",
+      "phone": "01016746713",
+      "country": "Egypt",
+      "city": " Monufia",
+      "address": "Minuf",
+      "imgSrc": "admin-photo.png"
+    },
+    {
+      "username": "Mustafa Amin",
+      "password": "aaAA@@88",
+      "confirmPassword": "aaAA@@66",
+      "firstname": "Mustafa",
+      "lastname": "Amin",
+      "email": "acc.mustafa0@yahoo.com",
+      "gender": "male",
+      "age": "26",
+      "phone": "01009914623",
+      "country": "Egypt",
+      "city": "Alexandria",
+      "address": "adsadadasdsa",
+      "id": 2
+    },
+    {
+      "username": "Mustafa Amin",
+      "password": "aaAA@@66",
+      "confirmPassword": "aaAA@@66",
+      "firstname": "Ahmed",
+      "lastname": "Mohamed",
+      "email": "mustafaelfarmawy@gmail.com",
+      "gender": "female",
+      "age": "50",
+      "phone": "01009914623",
+      "country": "asds",
+      "city": "adasd",
+      "address": "asdas",
+      "id": 3
+    },
+    {
+      "username": "Amin Hassan",
+      "password": "aaAA@@66",
+      "confirmPassword": "aaAA@@66",
+      "firstname": "Amin",
+      "lastname": "Hassan",
+      "email": "mustafaelfarmawy@gmail.com",
+      "gender": "male",
+      "age": "26",
+      "phone": "01009914623",
+      "country": "Egypt",
+      "city": "Alexandria",
+      "address": "asds",
+      "id": 4
+    }
+  ],
+  "register": [],
+  "login": [
+    {
+      "username": "Mustafa Amin",
+      "password": "aaAA@@66",
+      "id": 1
+    },
+    {
+      "username": "Mustafa Amin",
+      "password": "aasdsd",
+      "id": 2
+    },
+    {
+      "username": "asdsa",
+      "password": "dsadsad",
+      "id": 3
+    },
+    {
+      "username": "asdsad",
+      "password": "asdasdsad",
+      "id": 4
+    }
+  ],
+  "current-user": [],
+  "profile": [],
+  "system-users": [],
+  "user-main-data": []
+}
