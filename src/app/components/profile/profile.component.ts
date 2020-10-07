@@ -18,19 +18,15 @@ export class ProfileComponent implements OnInit {
   ) {
     this.authService.currentUser.subscribe(x => {
       this.userId = x.id
-      console.log(x.id);
-      
     });
   }
 
   ngOnInit(): void {
     this.authService.getById(this.userId).subscribe((u) => {
-       this.currentUser = u 
+      this.currentUser = u
       console.log(this.currentUser);
-
     })
     this.currentUser = this.authService.currentUserValue;
-
   }
 
   get isAdmin() {

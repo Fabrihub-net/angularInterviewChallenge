@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { User } from '@app/models/user';
 import { confirmation } from '@app/registerFormcustomValidator';
 import { AuthService } from '@app/services/auth.service';
@@ -20,7 +19,6 @@ export class ChangePasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
   ) {
     this.authService.currentUser.subscribe(x => {
       this.userId = x.id
@@ -31,7 +29,6 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {
 
     this.changePasswordForm = this.fb.group({
-
       oldPassword: ['', Validators.required],
       newPassword: ["", [Validators.required, Validators.minLength(5), Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9].{5,}$')]],
       confirmPassword: ['', Validators.required]
@@ -54,14 +51,11 @@ export class ChangePasswordComponent implements OnInit {
         console.log(this.currentUser);
         if (this.f.oldPassword.value === this.currentUser.password) {
           this.currentUser.password = this.f.newPassword.value
-
-          this.authService.updateUserPAss(this.userId, this.currentUser).subscribe(
+          this.authService.updateUser(this.userId, this.currentUser).subscribe(
             myUser => {
               this.passwordStatue = true;
-              // this.router.navigate(['/profile']);
               this.oldPassStatue = true;
               this.passwordPatternStatue = true ;
-
             }
           )
         } else {
@@ -70,7 +64,6 @@ export class ChangePasswordComponent implements OnInit {
       })
     }else{
       this.passwordPatternStatue= false;
-
     }
   }
 }

@@ -4,28 +4,23 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 
-// Note: this token service needs custom injection (will create an object in app.module)
-@Injectable(
-//   {
-//   providedIn: 'root' 
-// }
-)
-export class TokenInterceptorService implements HttpInterceptor{
-//interceptors are not dependable classes so we need to use injector to hold the required dependancies
-  constructor(private authService: AuthService) { }
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // add auth header with jwt if user is logged in and request is to api url
-    const currentUser = this.authService.currentUserValue;
-    const isLoggedIn = currentUser && currentUser.token;
-    const isApiUrl = request.url.startsWith(environment.apiUrl);
-    if (isLoggedIn && isApiUrl) {
-        request = request.clone({
-            setHeaders: {
-                Authorization: `Bearer ${currentUser.token}`
-            }
-        });
-    }
+@Injectable()
+export class TokenInterceptorService implements HttpInterceptor {
+    constructor(private authService: AuthService) { }
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    return next.handle(request);
-}
+        // add auth header with jwt if user is logged in and request is to api url
+        const currentUser = this.authService.currentUserValue;
+        const isLoggedIn = currentUser && currentUser.token;
+        const isApiUrl = request.url.startsWith(environment.apiUrl);
+        if (isLoggedIn && isApiUrl) {
+            request = request.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${currentUser.token}`
+                }
+            });
+        }
+
+        return next.handle(request);
+    }
 }

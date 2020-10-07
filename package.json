@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "server": "json-server --watch database.json --port 3004",
+    "server": "json-server --watch database.json ",
     "start-auth": "node server.js",
     "e2e": "ng e2e"
   },

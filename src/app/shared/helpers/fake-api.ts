@@ -3,14 +3,14 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 
-import {  Role } from '../../models/role';
-import {  User } from '../../models/user';
-import  *  as  data  from  '../../../../database.json';
+import { Role } from '../../models/role';
+import { User } from '../../models/user';
+import *  as  data from '../../../../database.json';
 
 const users: User[] = (data as any).default.users
 
 @Injectable()
-export class FakeApi  implements HttpInterceptor {
+export class FakeApi implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
@@ -19,7 +19,7 @@ export class FakeApi  implements HttpInterceptor {
         // wrap in delayed observable to simulate server api call
         return of(null)
             .pipe(mergeMap(handleRoute))
-            .pipe(materialize()) // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
+            .pipe(materialize()) 
             .pipe(delay(500))
             .pipe(dematerialize());
 
@@ -39,14 +39,14 @@ export class FakeApi  implements HttpInterceptor {
         }
 
         // route functions
-     
+
         function authenticate() {
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
             console.log(user)
             if (!user) {
                 return error('Username or password is incorrect')
-            }else {
+            } else {
                 return ok({
                     id: user.id,
                     username: user.username,
@@ -56,7 +56,6 @@ export class FakeApi  implements HttpInterceptor {
                     token: `fake-jwt-token.${user.id}`
                 });
             }
-
         }
 
         function getUsers() {
@@ -111,7 +110,6 @@ export class FakeApi  implements HttpInterceptor {
 }
 
 export const fakeApi = {
-    // use fake backend in place of Http service for backend-less development
     provide: HTTP_INTERCEPTORS,
     useClass: FakeApi,
     multi: true

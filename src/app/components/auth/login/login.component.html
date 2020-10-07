@@ -1,6 +1,17 @@
 <div class="container">
+
     <div class="row">
+        <div class="uk-alert-primary  uk-position-center-left  pt-5" uk-scrollspy="cls: uk-animation-slide-left; repeat: true" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p>Admin Login Account
+            </p>
+            <ul>
+                <li>username: iHub</li>
+                <li>password: admin</li>
+            </ul>
+        </div>
         <div class="login-component col-md-6 mx-auto my-5">
+
             <div class="card rounded-0">
                 <div class="card-header">
                     <h3 class="mb-0">
@@ -8,7 +19,6 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <!-- no validate becase i have custom validate -->
                     <form class="form" [formGroup]="authCredentialsDto" (ngSubmit)="userLogin()">
                         <p>
                             <mat-form-field appearance="fill" style="width: 100%">
@@ -24,27 +34,24 @@
                                     [type]="showPass ? 'text': 'password'" name="password" type="text" required>
                                 <button type="button" mat-icon-button matSuffix (click)="showPass = !showPass"
                                     [attr.aria-label]="'Hide password'">
-                                    <mat-icon>{{showPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    <mat-icon class="m-auto">{{showPass ? 'visibility_off' : 'visibility'}}</mat-icon>
                                 </button>
                             </mat-form-field>
                         </p>
                         <div *ngIf="error" class="alert alert-danger m-3">{{error}}</div>
-
                         <div class="row justify-content-end">
                             <button type="submit" [disabled]="!authCredentialsDto.valid"
                                 class="btn btn-outline-success pull-right float-right">
                                 Login
                             </button>
-
                         </div>
                         <mat-divider class="mt-3"></mat-divider>
-                        
                     </form>
                     <a routerLink="/auth/register" mat-button color="primary" class="text-center">Create new Account</a>
                 </div>
             </div>
-
         </div>
 
     </div>
 </div>
+

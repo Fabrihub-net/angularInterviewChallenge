@@ -9,16 +9,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { Role } from './models/role';
 import { AuthGuard } from './guards/auth.guard';
-
-import { ProfileResolverService } from './resolvers/profile-resolver.service';
-import { UserResolverService } from './resolvers/user-resolver.service';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 const routes: Routes = [
-   {
+  {
     path: '',
     component: HomeComponent,
-    // canActivate: [AuthGuard]
   },
   {
     path: 'home',
@@ -27,20 +23,16 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    // resolve: {
-    //   profile: ProfileResolverService
-    // },
-    // canActivate: [ UserAuthGuard]
   },
   {
     path: 'auth',
     children: [
       {
-        path:'login',
+        path: 'login',
         component: LoginComponent,
       },
       {
-        path:'register',
+        path: 'register',
         component: RegisterComponent,
       },
     ]
@@ -48,14 +40,11 @@ const routes: Routes = [
   {
     path: 'manage-users',
     component: ManageUsersComponent,
-    // resolve: {
-    //   allUsers: UserResolverService
-    // },
     canActivate: [AuthGuard],
     data: { roles: [Role.Admin] }
   },
   {
-    path: 'change-pass', // unknown path
+    path: 'change-pass',
     component: ChangePasswordComponent
   },
   {

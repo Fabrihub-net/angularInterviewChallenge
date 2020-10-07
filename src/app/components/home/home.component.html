@@ -1,37 +1,3 @@
-<!-- 
-<div class="uk-position-relative " >
-  <div class="uk-position-top" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
-    <nav class="uk-navbar-container  uk-dark" uk-navbar  style="position: relative; z-index: 980;" >
-          <nav class="uk-navbar-container" uk-navbar></nav>
-
-          <div class="uk-navbar-right">
-              <ul class="uk-navbar-nav" >
-                  <li class="uk-active"><a routerLink="/home">Home</a></li>
-
-                  <li *ngIf="!currentUser">
-                      <a>User Account</a>
-                      <div class="uk-navbar-dropdown">
-                          <ul class="uk-nav uk-navbar-dropdown-nav">
-                              <li ><a routerLink="/auth/register">Sign up</a></li> / 
-                              <li ><a routerLink="/auth/login">Sign in</a></li>
-                          </ul>
-                      </div>
-                  </li>
-                  <li *ngIf="currentUser" >
-                      <a *ngIf="userFromApi" >{{userFromApi.firstName}} {{userFromApi.lastName}}</a>
-                      <div class="uk-navbar-dropdown">
-                          <ul class="uk-nav uk-navbar-dropdown-nav">
-                              <li *ngIf="isAdmin"><a routerLink="/dashboard">Dashboard</a></li>
-                              <li><a routerLink="/profile">Profile</a></li>
-                              <li><a (click)="logout()" >Sign out</a></li>
-                          </ul>
-                      </div>
-                  </li>
-              </ul>
-          </div>
-      </nav>
-  </div>
-</div> -->
 
   <section>
     <img  data-src="../../../assets/images/116352145_4851888114836602_5922161311288739348_o.jpg" width="1800" height="1200" alt="" uk-img>

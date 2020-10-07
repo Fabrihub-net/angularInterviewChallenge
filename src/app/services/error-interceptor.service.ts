@@ -4,12 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError} from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
-// Note: this interceptor service needs custom injection (will create an object in app.module)
-@Injectable(
-//   {
-//   providedIn: 'root'
-// }
-)
+@Injectable()
 
 export class ErrorInterceptorService implements HttpInterceptor{
 

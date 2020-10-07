@@ -4,7 +4,6 @@ import { first } from 'rxjs/operators';
 import { Role } from 'src/app/models/role';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
-import * as data from './data/database.json';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,6 +12,7 @@ import * as data from './data/database.json';
 
 export class AppComponent {
   title = 'angularInterviewChallenge';
+  
   currentUser: User;
   constructor(
     private authService: AuthService,

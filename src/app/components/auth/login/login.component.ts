@@ -12,12 +12,11 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   authCredentialsDto: FormGroup;
-  showPass= false; 
+  showPass = false;
   users;
-    loading = false;
-    submitted = false;
-    returnUrl: string;
-    error = '';
+  submitted = false;
+  returnUrl: string;
+  error = '';
 
   constructor(
     private authService: AuthService,
@@ -37,37 +36,30 @@ export class LoginComponent implements OnInit {
     this.authCredentialsDto = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
-  });
+    });
 
-  // get return url from route parameters or default to '/'
-  this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-
-
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   //get form controls to access on form values
   get f() { return this.authCredentialsDto.controls; }
-
-
 
   //Form ngSubmit() method
   userLogin() {
     this.submitted = true;
     // stop here if form is invalid
     if (this.authCredentialsDto.invalid) {
-        return;
+      return;
     }
-
-    this.loading = true;
     this.authService.login(this.f.username.value, this.f.password.value)
-        .pipe(first())
-        .subscribe(
-            data => {
-                this.router.navigate([this.returnUrl]);
-            },
-            error => {
-                this.error = "Username or password is incorrect";
-                this.loading = false;
-            });
-}
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.error = "Username or password is incorrect";
+        });
+  }
 }

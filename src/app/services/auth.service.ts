@@ -10,7 +10,7 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class AuthService {
- 
+
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -23,14 +23,7 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-    //users methods
-    postUser(user) {
-      return this.http.post("http://localhost:3004/users", user);
-    }
-    getmyUsers() {
-      return this.http.get(" http://localhost:3004/users");
-    }
-    
+
   login(username: string, password: string) {
     return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
       .pipe(map(user => {
@@ -52,6 +45,12 @@ export class AuthService {
   }
 
   //users  methods
+  postUser(user) {
+    return this.http.post("http://localhost:3004/users", user);
+  }
+  getmyUsers() {
+    return this.http.get(" http://localhost:3004/users");
+  }
 
   getAll() {
     return this.http.get<User[]>(`${environment.apiUrl}/users`);
@@ -61,11 +60,12 @@ export class AuthService {
     return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
   }
 
-  updateUserPAss(id: number,updatedUserData: User) {
-    return this.http.put(`${environment.apiUrl}/users/${id}`,updatedUserData);
-
+  updateUser(id: number, updatedUserData: User) {
+    return this.http.put(`${environment.apiUrl}/users/${id}`, updatedUserData);
   }
 
-  
+  deleteUser(id: number) {
+    return this.http.delete<User>(`${environment.apiUrl}/users/${id}`);
+  }
 
 }
