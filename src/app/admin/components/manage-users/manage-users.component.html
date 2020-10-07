@@ -1,0 +1,76 @@
+<div class="mat-elevation-z8">
+    <button (click)="DeleteAll()" mat-button color="warn" class="py-2" [disabled]="!deleteAllState">Delete All
+        Selected</button>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <!-- id Column -->
+        <ng-container matColumnDef="id" >
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+                No.
+            </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null"
+                    [checked]="selection.isSelected(element)">
+                </mat-checkbox>
+                {{users.indexOf(element)+1}}
+            </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Name </th>
+            <td mat-cell *matCellDef="let element">{{element.username}} </td>
+        </ng-container>
+
+        <!-- age Column -->
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Age </th>
+            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+        </ng-container>
+
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > email </th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- role  Column -->
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header >
+                Role </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.role}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" class="text-center">
+            <th mat-header-cell *matHeaderCellDef class="text-center">
+                Actions </th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+                <div class="example-button-row">
+                    <div class="example-flex-container  p-1">
+                        <div class="example-button-container">
+                            <button (click)="deleteUser(element.id)" uk-tooltip="Delete user" mat-mini-fab
+                                color="primary" aria-label="Example icon button with a delete icon">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                        <div class="example-button-container  p-1">
+                            <button (click)="makeAdmin(element.id)" uk-tooltip="Make Admin" mat-mini-fab color="accent"
+                                aria-label="Example icon button with a bookmark icon">
+                                <mat-icon>bookmark</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[7, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
